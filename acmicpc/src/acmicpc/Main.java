@@ -11,27 +11,23 @@ public class Main {
 		Scanner scn = new Scanner(System.in);
 		int r = scn.nextInt();
 		int c = scn.nextInt();
-		char[][] board = new char[r][c];
+		int[][] board = new int[r][c];
 		for(int i=0; i<r; i++) {
 			String line = scn.next();
 			for(int j=0; j<c; j++)
-				board[i][j] = line.charAt(j);
+				board[i][j] = line.charAt(j) - 'a';
 		}
 		scn.close();
 		
-		Stack<Character> way = new Stack<>();
+		Stack<Integer> way = new Stack<>();
 		way.add(board[0][0]);
 		dfs(board, way, 0, 0);
 		System.out.print(depth);
 	}
 	
-	private static void dfs(char[][] board, Stack<Character> way, int i, int j) {
-		char tmp;
+	private static void dfs(int[][] board, Stack<Integer> way, int i, int j) {
+		int tmp;
 		boolean canvisit = false;
-//		for(int idx=0; idx<way.size(); idx++) {
-//			System.out.print(way.get(idx) + " ");
-//		}
-//		System.out.println();
 		
 		if(i > 0) {					// above
 			tmp = board[i-1][j];
